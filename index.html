@@ -1,0 +1,473 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="تعليمات الخروج">
+<style>:root{padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}body{margin:0}[hidden]{display:none!important}img{max-width:100%}</style>
+<title>تعليمات الخروج</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600&family=Noto+Kufi+Arabic:wght@600;700&display=swap">
+<style>
+/* Layout: editor column + paper sheet column (stacked with a tab switch on phones) */
+:root{
+  --bg:#eef2f2; --surface:#ffffff; --fg:#14262b; --muted:#5b6f74; --line:#d3dddd;
+  --accent:#0f5e66; --accent-soft:#e0eeee; --warn:#a05a00; --warn-soft:#fff3e2; --danger:#b3261e; --danger-soft:#fdeceb;
+  --paper:#ffffff; --ink:#152a2f; --ink-muted:#58696d; --paper-line:#dbe3e3; --paper-accent:#0f5e66;
+  --display:"Noto Kufi Arabic","IBM Plex Sans Arabic",Tahoma,sans-serif;
+  --body:"IBM Plex Sans Arabic",Tahoma,"Segoe UI",sans-serif;
+}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){
+  --bg:#0e1a1c; --surface:#16262a; --fg:#e3ecec; --muted:#93a8ac; --line:#2a3d41;
+  --accent:#5fb7bf; --accent-soft:#183a3e; --warn:#f0b062; --warn-soft:#33270f; --danger:#ff8a80; --danger-soft:#3a1a18; color-scheme:dark}}
+:root[data-theme="dark"]{
+  --bg:#0e1a1c; --surface:#16262a; --fg:#e3ecec; --muted:#93a8ac; --line:#2a3d41;
+  --accent:#5fb7bf; --accent-soft:#183a3e; --warn:#f0b062; --warn-soft:#33270f; --danger:#ff8a80; --danger-soft:#3a1a18; color-scheme:dark}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--body);font-size:15px;line-height:1.6;
+  padding-left:max(16px,env(safe-area-inset-left,0px));padding-right:max(16px,env(safe-area-inset-right,0px));padding-block:16px 40px}
+.app{max-width:1180px;margin:0 auto;display:flex;flex-direction:column;gap:16px}
+header.top{display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+header.top h1{font-family:var(--display);font-size:1.35rem;margin:0;color:var(--fg)}
+header.top p{margin:0;color:var(--muted);font-size:.9rem}
+.tabs{display:none;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:4px;gap:4px}
+.tabs button{flex:1;border:0;background:transparent;color:var(--muted);font:600 .95rem var(--body);padding:8px;border-radius:7px;cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--accent);color:#fff}
+.grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.05fr);gap:20px;align-items:start}
+.panel{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:18px;display:flex;flex-direction:column;gap:18px;min-width:0}
+fieldset{border:0;margin:0;padding:0;display:flex;flex-direction:column;gap:10px}
+legend{font-family:var(--display);font-size:.95rem;color:var(--accent);padding:0;margin-bottom:6px}
+.row{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px}
+label{display:flex;flex-direction:column;gap:4px;font-size:.85rem;color:var(--muted);min-width:0}
+input,select,textarea{font:inherit;font-size:16px;color:var(--fg);background:var(--bg);border:1px solid var(--line);border-radius:8px;padding:9px 10px;width:100%;min-width:0}
+textarea{min-height:72px;resize:vertical}
+input:focus,select:focus,textarea:focus,button:focus-visible,a:focus-visible{outline:2px solid var(--accent);outline-offset:1px}
+.hint{font-size:.82rem;color:var(--muted);margin:0}
+.alert{font-size:.85rem;background:var(--warn-soft);color:var(--warn);border-radius:8px;padding:8px 10px;margin:0}
+.items{display:flex;flex-direction:column;gap:2px}
+.items h4{margin:10px 0 4px;font-size:.82rem;color:var(--muted);font-weight:600;letter-spacing:.02em}
+.items label{flex-direction:row;align-items:flex-start;gap:8px;color:var(--fg);font-size:.9rem;padding:5px 4px;border-radius:6px;cursor:pointer}
+.items label:hover{background:var(--accent-soft)}
+.items input{width:auto;margin-top:5px;accent-color:var(--accent)}
+.items label.off span{color:var(--muted);text-decoration:line-through}
+.actions{display:flex;flex-wrap:wrap;gap:8px}
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:6px;font:600 .95rem var(--body);padding:10px 16px;border-radius:9px;border:1px solid var(--line);background:var(--surface);color:var(--fg);cursor:pointer;text-decoration:none}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.wa{background:#1f8f4e;border-color:#1f8f4e;color:#fff}
+.toast{font-size:.85rem;color:var(--accent);min-height:1.2em;margin:0}
+
+/* Paper sheet: always paper-white so it prints and screenshots the same in both themes */
+.sheet-wrap{display:flex;flex-direction:column;gap:12px;min-width:0;position:sticky;top:16px}
+.sheet{background:var(--paper);color:var(--ink);border-radius:6px;box-shadow:0 1px 2px rgba(0,0,0,.08),0 8px 24px rgba(15,60,66,.10);
+  padding:26px 26px 20px;font-size:13.5px;line-height:1.75;display:flex;flex-direction:column;gap:14px}
+.lh{display:flex;justify-content:space-between;gap:12px;border-bottom:2px solid var(--paper-accent);padding-bottom:10px;flex-wrap:wrap}
+.lh .ar b{font-family:var(--display);font-size:1.15rem;color:var(--paper-accent);display:block}
+.lh .ar span{color:var(--ink-muted);font-size:.82rem;display:block}
+.lh .en{direction:ltr;text-align:left;font-size:.78rem;color:var(--ink-muted);line-height:1.5}
+.lh .en b{color:var(--ink);font-size:.86rem}
+.doc-title{font-family:var(--display);font-size:1.1rem;margin:0;text-align:center;color:var(--ink)}
+.meta{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:2px 16px;background:#f3f7f7;border-radius:6px;padding:10px 12px;font-size:.88rem}
+.meta div{min-width:0}
+.meta span{color:var(--ink-muted)}
+.sec h3{font-family:var(--display);font-size:.95rem;margin:0 0 4px;color:var(--paper-accent)}
+.sec ul{margin:0;padding-inline-start:18px}
+.sec li{margin:2px 0}
+.dates{display:flex;flex-direction:column;gap:6px}
+.date-chip{border:1px solid var(--paper-line);border-radius:6px;padding:8px 10px;display:flex;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.date-chip.must{border-color:#d9822b;background:#fff6ea}
+.date-chip b{color:var(--ink)}
+.sec.warn{background:#fdeeed;border-radius:6px;padding:10px 12px}
+.sec.warn h3{color:#a3221b}
+.sheet .foot{border-top:1px solid var(--paper-line);padding-top:8px;font-size:.8rem;color:var(--ink-muted);display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap}
+.foot .phone{direction:ltr;unicode-bidi:isolate;font-weight:600;color:var(--ink)}
+.sample{font-size:.8rem;color:var(--warn);background:var(--warn-soft);border-radius:6px;padding:4px 8px;align-self:flex-start;margin:0}
+
+@media (max-width:860px){
+  .tabs{display:flex}
+  .grid{grid-template-columns:minmax(0,1fr)}
+  .sheet-wrap{position:static}
+  .app[data-view="edit"] .sheet-wrap{display:none}
+  .app[data-view="preview"] .panel{display:none}
+  .sheet{padding:18px 16px}
+  .meta{grid-template-columns:minmax(0,1fr)}
+}
+@media print{
+  @page{size:A5;margin:9mm}
+  body{background:#fff;padding:0}
+  header.top,.tabs,.panel,.sheet-actions,.toast,.sample{display:none!important}
+  .grid{display:block}.sheet-wrap{display:block!important;position:static}
+  .sheet{box-shadow:none;padding:0;font-size:11.5px}
+  .sec,.date-chip{break-inside:avoid}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="app" dir="rtl" lang="ar" data-view="edit" id="app">
+  <header class="top">
+    <div>
+      <h1>تعليمات الخروج بعد العملية</h1>
+      <p>اختر العملية، أكمل البيانات، ثم أرسل الورقة للمريض</p>
+    </div>
+  </header>
+
+  <div class="tabs" role="tablist">
+    <button role="tab" id="tab-edit" aria-selected="true">البيانات</button>
+    <button role="tab" id="tab-preview" aria-selected="false">ورقة المريض</button>
+  </div>
+
+  <div class="grid">
+    <form class="panel" id="form" autocomplete="off">
+      <fieldset>
+        <legend>العملية</legend>
+        <label>نوع العملية<select id="proc"></select></label>
+        <div class="row">
+          <label>تاريخ العملية<input type="date" id="surgeryDate"></label>
+          <label>المستشفى<select id="hospital"></select></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>المريض</legend>
+        <label>الاسم<input id="name" placeholder="اسم المريض"></label>
+        <div class="row">
+          <label>السن<input id="age" inputmode="numeric" placeholder="مثال: ٦٨"></label>
+          <label>رقم واتساب<input id="phone" inputmode="tel" dir="ltr" placeholder="01xxxxxxxxx أو +966…"></label>
+        </div>
+      </fieldset>
+
+      <fieldset>
+        <legend>المواعيد</legend>
+        <div class="row">
+          <label id="catheterWrap">إزالة القسطرة<input type="date" id="catheterDate"></label>
+          <label id="stentWrap">إزالة الدعامة (DJ)<input type="date" id="stentDate"></label>
+          <label>المتابعة في العيادة<input type="date" id="fuDate"></label>
+        </div>
+        <label>العيادة<select id="clinic"></select></label>
+        <p class="alert" id="stentAlert" hidden>لم يُحدَّد موعد إزالة الدعامة. يُفضّل تحديده قبل خروج المريض.</p>
+      </fieldset>
+
+      <fieldset>
+        <legend>الأدوية</legend>
+        <label>دواء في كل سطر<textarea id="meds" placeholder="مثال: سيفوتاكس ٥٠٠ مجم — قرص كل ١٢ ساعة لمدة ٥ أيام"></textarea></label>
+      </fieldset>
+
+      <fieldset>
+        <legend>التعليمات</legend>
+        <p class="hint">ألغِ تحديد أي تعليمة لا تناسب هذا المريض.</p>
+        <div class="items" id="items"></div>
+        <label>تعليمات إضافية (سطر لكل تعليمة)<textarea id="notes" placeholder="مثال: إيقاف الأسبرين لحين المتابعة"></textarea></label>
+      </fieldset>
+
+      <div class="actions">
+        <button type="button" class="btn" id="clear">ورقة جديدة</button>
+      </div>
+    </form>
+
+    <div class="sheet-wrap">
+      <p class="sample" id="sampleTag">بيانات مثال — امسحها بزر «ورقة جديدة»</p>
+      <article class="sheet" id="sheet"></article>
+      <div class="actions sheet-actions">
+        <a class="btn wa" id="wa" href="https://wa.me/" target="_blank" rel="noopener">إرسال عبر واتساب</a>
+        <button type="button" class="btn primary" id="copy">نسخ النص</button>
+        <button type="button" class="btn" id="print" hidden>طباعة (A5)</button>
+      </div>
+      <p class="toast" id="toast" aria-live="polite"></p>
+    </div>
+  </div>
+</div>
+
+<script>
+(function(){
+const HOSPITALS=["مستشفى ويلكير","مستشفى الصفا","المستشفى الفرنساوي","مستشفى الأفق","معهد ناصر"];
+const CLINICS=[
+  {k:"faisal",n:"عيادة فيصل",a:"٢٠ شارع فيصل"},
+  {k:"mohandessin",n:"عيادة المهندسين",a:"٢٦ شارع جامعة الدول العربية، أعلى سوبر ماركت مترو، الدور الثالث"},
+  {k:"dokki",n:"عيادة الدقي",a:"٢٢ شارع الحسين، خلف ديفاكتو من شارع محي الدين أبو العز"}
+];
+const PHONE="01020857272";
+
+const FLUIDS="اشرب ٢–٣ لترات من السوائل يوميًا، ما لم يحدد لك الطبيب كمية أقل (مثل مرضى القلب أو الكلى).";
+const BAG="حافظ على كيس البول أسفل مستوى المثانة دائمًا، ولا تشد القسطرة أو تحاول إخراجها.";
+const MEATUS="نظّف مكان خروج القسطرة بالماء والصابون مرتين يوميًا.";
+const CONST="تجنب الإمساك والحزق: أكثر من الخضار والفاكهة والسوائل، واستخدم الملين الموصوف.";
+const BLOOD="لا توقف ولا تبدأ أي دواء لسيولة الدم إلا بعد الرجوع للطبيب.";
+const FEVER="ارتفاع الحرارة إلى ٣٨ درجة أو أكثر، أو رعشة.";
+const PAIN="ألم شديد لا يتحسن بالمسكنات الموصوفة.";
+const RETEN="عدم القدرة على التبول، أو توقف نزول البول في القسطرة.";
+const SCROTAL_ICE="ضع كمادات باردة (ملفوفة في قماش) ١٥ دقيقة عدة مرات يوميًا خلال أول ٤٨ ساعة.";
+const SUPPORT="ارتدِ ملابس داخلية ضاغطة (حاملة للصفن) لمدة أسبوعين.";
+const SHOWER="يمكنك الاستحمام بعد ٤٨ ساعة، مع تجفيف الجرح جيدًا.";
+const WOUND="احمرار أو صديد أو إفرازات من الجرح.";
+const PORTS="حافظ على جروح فتحات المنظار نظيفة وجافة، ويمكنك الاستحمام بعد ٤٨ ساعة مع تجفيفها جيدًا.";
+const GAS="ألم في الكتف أو انتفاخ بالبطن ليومين أو ثلاثة بسبب الغاز المستخدم في المنظار، ويزول تلقائيًا.";
+const WALK="امشِ عدة مرات يوميًا من أول يوم، فالحركة تقلل خطر الجلطات وتساعد على عودة حركة الأمعاء.";
+const DVT="تورم أو ألم في سمانة الرجل، أو ضيق مفاجئ في التنفس أو ألم بالصدر.";
+const DRAIN="إذا خرجت بأنبوب درنقة: لا تشده، وسجّل كمية السائل يوميًا حتى موعد إزالته.";
+const INJ="استمر في حقن السيولة (منع الجلطات) حسب المدة الموصوفة.";
+const SOLO="بعد استئصال الكلية: لا تتناول مسكنات من نوع مضادات الالتهاب (مثل الديكلوفيناك والإيبوبروفين) إلا بعد استشارة الطبيب، حفاظًا على الكلية الأخرى.";
+const BOWEL="قيء متكرر، أو انتفاخ شديد بالبطن، أو عدم خروج غازات.";
+
+const PROCS={
+ holep:{n:"استئصال البروستاتا بالليزر (HoLEP / ThuLEP)",cath:true,stent:false,
+  expect:["قد يظهر دم خفيف في البول أو جلطات صغيرة بشكل متقطع لمدة تصل إلى ٤–٦ أسابيع، وهذا متوقع غالبًا.",
+   "حرقان وكثرة التبول والإلحاح لعدة أسابيع، ويتحسن تدريجيًا.",
+   "قد يحدث تسرب بسيط للبول بعد إزالة القسطرة، ويتحسن عادة خلال أسابيع مع تمارين قاع الحوض.",
+   "في أغلب الحالات يتجه السائل المنوي إلى المثانة عند القذف (قذف ارتجاعي)، وهذا غير ضار."],
+  care:[FLUIDS,BAG,MEATUS,CONST,
+   "تجنب رفع الأوزان الثقيلة (أكثر من ٥ كجم) والمجهود العنيف لمدة ٤ أسابيع.",
+   "تجنب ركوب الدراجات والخيل لمدة ٦ أسابيع.",
+   "يمكن استئناف العلاقة الزوجية بعد ٤ أسابيع.",
+   "ابدأ تمارين قاع الحوض بعد إزالة القسطرة.",BLOOD],
+  warn:[RETEN,"نزيف شديد أو جلطات كبيرة تعيق التبول.",FEVER,PAIN]},
+ turp:{n:"استئصال البروستاتا بالمنظار (TURP)",cath:true,stent:false,
+  expect:["قد يظهر دم في البول بشكل متقطع لمدة تصل إلى ٤ أسابيع، وأحيانًا يزيد بين اليوم ١٠ و١٤.",
+   "حرقان وكثرة التبول لعدة أسابيع، ويتحسن تدريجيًا.",
+   "في أغلب الحالات يتجه السائل المنوي إلى المثانة عند القذف (قذف ارتجاعي)، وهذا غير ضار."],
+  care:[FLUIDS,BAG,MEATUS,CONST,
+   "تجنب رفع الأوزان الثقيلة والمجهود العنيف لمدة ٤–٦ أسابيع.",
+   "تجنب ركوب الدراجات والخيل لمدة ٦ أسابيع.",
+   "يمكن استئناف العلاقة الزوجية بعد ٤ أسابيع.",BLOOD],
+  warn:[RETEN,"نزيف شديد أو جلطات كبيرة تعيق التبول.",FEVER,PAIN]},
+ urs:{n:"تفتيت حصوة الحالب بالمنظار والليزر مع دعامة (URS)",cath:false,stent:true,stentRequired:true,
+  expect:["مع وجود الدعامة: ألم في الجنب أثناء التبول، وكثرة التبول، ودم خفيف في البول. هذه أعراض متوقعة.",
+   "قد تنزل فتات صغيرة من الحصوة مع البول خلال الأيام الأولى."],
+  care:[FLUIDS,"استخدم الأدوية الموصوفة لتخفيف أعراض الدعامة.",
+   "يمكنك العودة للأنشطة اليومية خلال أيام، وتجنب المجهود العنيف طالما الدعامة موجودة.",
+   "احتفظ بنتيجة تحليل الحصوة لعرضها في موعد المتابعة.",
+   "الدعامة مؤقتة ويجب إزالتها في موعدها. تركها مدة أطول قد يؤدي إلى تكلسها ومضاعفات خطيرة على الكلية."],
+  warn:[FEVER+" (يحتاج تقييمًا عاجلًا)",PAIN,"عدم القدرة على التبول.","نزيف شديد أو جلطات."]},
+ pcnl:{n:"استخراج حصوة الكلى عن طريق الجلد (PCNL)",cath:false,stent:true,
+  expect:["دم في البول خلال الأيام الأولى، ويقل تدريجيًا.",
+   "ألم مكان الجرح في الظهر، وقد يحدث تسرب بسيط من الجرح في أول أيام."],
+  care:[FLUIDS,"غيّر الغيار على الجرح إذا ابتل، وحافظ عليه نظيفًا وجافًا.",
+   "يمكنك الاستحمام بعد ٤٨ ساعة مع تغطية الجرح.",
+   "إذا خرجت بأنبوب كلوي: احتفظ بالكيس أسفل مستوى الكلية ولا تشد الأنبوب.",
+   "تجنب رفع الأوزان الثقيلة والمجهود العنيف لمدة ٤ أسابيع.",
+   "احتفظ بنتيجة تحليل الحصوة لعرضها في موعد المتابعة.",BLOOD],
+  warn:["نزيف شديد في البول أو من الجرح، أو غيار يتشبع بالدم بسرعة.",FEVER,
+   "ضيق في التنفس أو ألم في الصدر.",PAIN]},
+ varico:{n:"ربط دوالي الخصية بالميكروسكوب",cath:false,stent:false,
+  expect:["ألم بسيط وتورم في كيس الصفن لعدة أيام."],
+  care:[SCROTAL_ICE,SUPPORT,SHOWER,
+   "يمكنك العودة للعمل المكتبي خلال ٢–٣ أيام.",
+   "تجنب الرياضة العنيفة ورفع الأوزان لمدة ٢–٣ أسابيع.",
+   "يمكن استئناف العلاقة الزوجية بعد أسبوع إلى أسبوعين.",
+   "أعد تحليل السائل المنوي بعد ٣ أشهر من العملية."],
+  warn:["تورم يزداد بسرعة أو ازرقاق واضح في الصفن.",FEVER,WOUND]},
+ tese:{n:"استخراج الحيوانات المنوية بالميكروسكوب (Micro-TESE)",cath:false,stent:false,
+  expect:["ألم بسيط وتورم في الخصية لعدة أيام."],
+  care:[SCROTAL_ICE,SUPPORT,SHOWER,
+   "يمكنك العودة للعمل المكتبي خلال ٢–٣ أيام.",
+   "تجنب الرياضة العنيفة ورفع الأوزان لمدة أسبوعين.",
+   "سيتم إبلاغك بنتيجة العينة، وتنسيق موعد الحقن المجهري مع المركز."],
+  warn:["تورم يزداد بسرعة أو ازرقاق واضح في الصفن.",FEVER,WOUND]},
+ hydro:{n:"استئصال القيلة المائية (Hydrocelectomy)",cath:false,stent:false,
+  expect:["تورم الصفن قد يستمر من أسبوعين إلى ٤ أسابيع ويقل تدريجيًا."],
+  care:[SCROTAL_ICE,SUPPORT,SHOWER,
+   "تجنب الرياضة العنيفة ورفع الأوزان لمدة ٣ أسابيع."],
+  warn:["تورم يزداد بسرعة أو ألم شديد في الصفن.",FEVER,WOUND]},
+ radpros:{n:"استئصال جذري للبروستاتا جراحيًا",cath:true,stent:false,
+  expect:["تبقى القسطرة عادة من ٧ إلى ١٤ يومًا حسب تعليمات الطبيب.",
+   "بعد إزالة القسطرة يحدث غالبًا تسرب للبول، ويتحسن تدريجيًا على مدى أسابيع إلى أشهر.",
+   "قد يتأثر الانتصاب بعد العملية، وسيناقش معك الطبيب خطة التأهيل المناسبة."],
+  care:[BAG,MEATUS,FLUIDS,CONST,WALK,INJ,
+   "حافظ على الجرح نظيفًا وجافًا، وتُزال الغرز أو الدبابيس في الموعد المحدد.",
+   "تجنب رفع الأوزان الثقيلة والمجهود العنيف لمدة ٦ أسابيع، ولا تقُد السيارة لمدة أسبوعين.",
+   "بعد إزالة القسطرة: ابدأ تمارين قاع الحوض بانتظام، واستخدم الفوط حسب الحاجة.",
+   "تحليل PSA بعد ٦ أسابيع من العملية، وأحضر نتيجة عينة الباثولوجي في المتابعة."],
+  warn:["خروج القسطرة: لا تحاول إعادة تركيبها، واتصل بنا فورًا.",RETEN,FEVER,DVT,"نزيف شديد أو جلطات كبيرة.",WOUND]},
+ turbt:{n:"استئصال ورم المثانة بالمنظار (TURBT)",cath:true,stent:false,
+  expect:["دم في البول بشكل متقطع لمدة تصل إلى أسبوعين.","حرقان وكثرة التبول لعدة أيام."],
+  care:[FLUIDS,CONST,
+   "تجنب رفع الأوزان الثقيلة والمجهود العنيف لمدة أسبوعين.",
+   "أحضر نتيجة عينة الباثولوجي في موعد المتابعة، فهي التي تحدد خطة العلاج والمتابعة.",
+   "لا تهمل مواعيد منظار المتابعة، لأن أورام المثانة قد تعود.",BLOOD],
+  warn:[RETEN,"نزيف شديد أو جلطات كبيرة تعيق التبول.",FEVER,PAIN]},
+ bcg:{n:"حقن المثانة بمادة BCG",cath:false,stent:false,
+  expect:["حرقان وكثرة التبول ودم خفيف في البول لمدة يوم إلى يومين بعد كل جلسة.",
+   "قد يحدث إرهاق أو أعراض تشبه الإنفلونزا مع حرارة خفيفة خلال أول ٤٨ ساعة."],
+  care:["قلّل السوائل لمدة ٤ ساعات قبل الجلسة، واحتفظ بالدواء في المثانة ساعتين بعدها.",
+   "بعد أول تبول: اشرب كمية كبيرة من السوائل لمدة ٢٤ ساعة لغسل المثانة.",
+   "تبوّل وأنت جالس لمدة ٦ ساعات بعد الجلسة لتجنب رذاذ البول.",
+   "خلال ٦ ساعات بعد الجلسة: أضف كوبين من الكلور (المبيض) إلى المرحاض بعد كل تبول، واتركه ١٥ دقيقة قبل شطفه.",
+   "اغسل يديك ومنطقة الأعضاء التناسلية بالماء والصابون بعد كل تبول.",
+   "استخدم الواقي الذكري أثناء العلاقة الزوجية طوال فترة العلاج وحتى أسبوع بعد آخر جلسة.",
+   "أبلغ الطبيب قبل الجلسة إذا كان لديك دم ظاهر في البول أو التهاب أو حرارة."],
+  warn:["حرارة ٣٨٫٥ درجة أو أكثر، أو حرارة تستمر أكثر من ٤٨ ساعة (تحتاج تقييمًا عاجلًا).",
+   "أعراض تشبه الإنفلونزا تستمر أكثر من ٤٨ ساعة.","ألم أو تورم في المفاصل، أو احمرار بالعين، أو كحة مستمرة.",
+   "عدم القدرة على التبول أو دم شديد في البول."]},
+ radcyst:{n:"استئصال جذري للمثانة جراحيًا",cath:true,stent:false,
+  expect:["التعافي الكامل يحتاج عادة من ٦ إلى ١٢ أسبوعًا، والإرهاق وقلة الشهية في الأسابيع الأولى أمر متوقع.",
+   "وجود مخاط في البول أمر طبيعي لأن البول يمر عبر جزء من الأمعاء."],
+  care:[WALK,INJ,FLUIDS,
+   "كُل وجبات صغيرة متعددة غنية بالبروتين، وتجنب الإمساك.",
+   "حافظ على الجرح نظيفًا وجافًا، وتُزال الغرز أو الدبابيس في الموعد المحدد.",
+   "مع الفتحة البولية (Ileal conduit): غيّر الكيس كل ٣–٤ أيام أو عند التسريب، ونظّف الجلد حول الفتحة بالماء فقط.",
+   "مع المثانة البديلة: اغسل القسطرة لإزالة المخاط حسب التعليمات، وبعد إزالتها تبوّل كل ٢–٣ ساعات بالجلوس حتى بالليل.",
+   "تجنب رفع الأوزان الثقيلة والمجهود العنيف لمدة ٦–٨ أسابيع.",
+   "أحضر نتيجة عينة الباثولوجي ونتائج وظائف الكلى في المتابعة."],
+  warn:[FEVER,BOWEL,"قلة شديدة في كمية البول، أو توقف نزوله في الكيس أو القسطرة.",
+   "تغير لون الفتحة البولية إلى الداكن أو الأسود.",DVT,WOUND]},
+ lapneph:{n:"استئصال كلي للكلية بمنظار البطن",cath:false,stent:false,
+  expect:["ألم بسيط مكان فتحات المنظار لعدة أيام.",GAS],
+  care:[PORTS,WALK,FLUIDS,CONST,DRAIN,SOLO,
+   "تجنب رفع الأوزان الثقيلة والمجهود العنيف لمدة ٤–٦ أسابيع، ولا تقُد السيارة لمدة أسبوعين.",
+   "قِس ضغط الدم بانتظام، وأحضر تحليل وظائف الكلى ونتيجة الباثولوجي في المتابعة."],
+  warn:[FEVER,"ألم شديد يزداد في البطن أو الجنب، أو انتفاخ شديد.","دوخة شديدة أو إغماء.",DVT,WOUND]},
+ openneph:{n:"استئصال كلي للكلية جراحيًا (جراحة مفتوحة)",cath:false,stent:false,
+  expect:["ألم في الجرح والجنب لعدة أسابيع، ويقل تدريجيًا.","التعافي الكامل يحتاج عادة من ٦ إلى ٨ أسابيع."],
+  care:["حافظ على الجرح نظيفًا وجافًا، وتُزال الغرز أو الدبابيس بعد ١٠–١٤ يومًا.",
+   "خذ نفسًا عميقًا عدة مرات كل ساعة لحماية الرئة من الالتهاب.",WALK,FLUIDS,CONST,DRAIN,SOLO,
+   "تجنب رفع الأوزان الثقيلة والمجهود العنيف لمدة ٦–٨ أسابيع.",
+   "قِس ضغط الدم بانتظام، وأحضر تحليل وظائف الكلى ونتيجة الباثولوجي في المتابعة."],
+  warn:[FEVER,"كحة مع بلغم أو صعوبة في التنفس.","ألم شديد يزداد في البطن أو الجنب.",DVT,WOUND]},
+ renalcyst:{n:"إزالة كيس من الكلية بمنظار البطن",cath:false,stent:false,
+  expect:["ألم بسيط مكان فتحات المنظار لعدة أيام.",GAS],
+  care:[PORTS,WALK,FLUIDS,DRAIN,
+   "يمكنك العودة للعمل المكتبي خلال أسبوع إلى أسبوعين.",
+   "تجنب رفع الأوزان الثقيلة والمجهود العنيف لمدة ٢–٣ أسابيع.",
+   "أشعة تليفزيونية (سونار) على الكلى حسب موعد المتابعة."],
+  warn:[FEVER,"ألم شديد يزداد في البطن أو الجنب.","دم في البول.",WOUND]},
+ eswl:{n:"تفتيت الحصوات بالموجات التصادمية (ESWL)",cath:false,stent:false,
+  expect:["دم في البول لمدة يوم إلى يومين.","نزول فتات الحصوة مع البول خلال أيام إلى أسابيع، وقد يصاحبه مغص.",
+   "احمرار أو كدمة بسيطة مكان الجلسة على الجلد."],
+  care:[FLUIDS,"امشِ وتحرك بانتظام لمساعدة الفتات على النزول.",
+   "صفِّ البول بمصفاة أو شاش واحتفظ بالفتات لتحليلها.",
+   "استخدم المسكن وأدوية مساعدة نزول الحصوة حسب الروشتة.",
+   "أشعة متابعة لتقييم نتيجة التفتيت، فقد تحتاج جلسة أخرى."],
+  warn:[FEVER+" (يحتاج تقييمًا عاجلًا)",PAIN,"عدم القدرة على التبول.","قيء متكرر يمنعك من الشرب."]},
+ cysto:{n:"منظار المثانة / إزالة الدعامة",cath:false,stent:false,
+  expect:["حرقان ودم خفيف في البول ليوم أو يومين.",
+   "بعد إزالة الدعامة قد يحدث ألم يشبه المغص لساعات قليلة."],
+  care:[FLUIDS,"يمكنك العودة لنشاطك المعتاد من اليوم التالي.","أكمل المضاد الحيوي إذا وُصف لك."],
+  warn:[FEVER,"عدم القدرة على التبول.",PAIN]}
+};
+
+const $=id=>document.getElementById(id);
+const F=["proc","surgeryDate","hospital","name","age","phone","catheterDate","stentDate","fuDate","clinic","meds","notes"];
+const KEY="discharge-sheet-v1";
+
+function iso(d){const t=new Date();t.setDate(t.getDate()+d);return t.toISOString().slice(0,10)}
+const SAMPLE={proc:"holep",surgeryDate:iso(0),hospital:HOSPITALS[0],name:"أحمد محمود (مثال)",age:"٦٨",phone:"",
+  catheterDate:iso(2),stentDate:"",fuDate:iso(30),clinic:"mohandessin",
+  meds:"مضاد حيوي حسب الروشتة — لمدة ٥ أيام\nمسكن عند اللزوم\nملين — كيس يوميًا",notes:"",off:{},sample:true};
+
+let S;
+try{S=JSON.parse(localStorage.getItem(KEY))}catch(e){}
+if(!S||!S.proc)S=JSON.parse(JSON.stringify(SAMPLE));
+S.off=S.off||{};
+
+const GROUPS=[["البروستاتا",["holep","turp","radpros"]],["الحصوات",["urs","pcnl","eswl"]],["الكلى",["lapneph","openneph","renalcyst"]],["المثانة",["turbt","bcg","radcyst","cysto"]],["الجراحات التناسلية والعقم",["varico","tese","hydro"]]];
+$("proc").innerHTML=GROUPS.map(([g,ks])=>`<optgroup label="${g}">`+ks.map(k=>`<option value="${k}">${PROCS[k].n}</option>`).join("")+`</optgroup>`).join("");
+$("hospital").innerHTML=HOSPITALS.map(h=>`<option>${h}</option>`).join("");
+$("clinic").innerHTML=CLINICS.map(c=>`<option value="${c.k}">${c.n}</option>`).join("");
+F.forEach(f=>{$(f).value=S[f]||""});
+
+const esc=s=>String(s).replace(/[&<>"]/g,c=>({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+const AR=s=>String(s).replace(/\d/g,d=>"٠١٢٣٤٥٦٧٨٩"[d]);
+function fmt(v){if(!v)return"";const d=new Date(v+"T12:00:00");
+  try{return d.toLocaleDateString("ar-EG",{weekday:"long",day:"numeric",month:"long",year:"numeric"})}catch(e){return v}}
+const lines=v=>(v||"").split("\n").map(s=>s.trim()).filter(Boolean);
+const SECS=[["expect","ما الذي تتوقعه"],["care","تعليمات العناية في المنزل"],["warn","اتصل بنا فورًا أو توجه للطوارئ إذا حدث"]];
+
+function active(){const p=PROCS[S.proc];const off=S.off[S.proc]||[];const o={};
+  SECS.forEach(([s])=>{o[s]=p[s].filter((_,i)=>!off.includes(s+i))});return o}
+
+function renderItems(){const p=PROCS[S.proc];const off=S.off[S.proc]||[];
+  $("items").innerHTML=SECS.map(([s,t])=>`<h4>${t}</h4>`+p[s].map((x,i)=>{const id=s+i,on=!off.includes(id);
+    return `<label class="${on?"":"off"}"><input type="checkbox" data-id="${id}" ${on?"checked":""}><span>${esc(x)}</span></label>`}).join("")).join("");}
+
+function render(){
+  const p=PROCS[S.proc];
+  $("catheterWrap").hidden=!p.cath; $("stentWrap").hidden=!p.stent;
+  $("stentAlert").hidden=!(p.stentRequired&&!S.stentDate);
+  $("sampleTag").hidden=!S.sample;
+  const a=active(), clinic=CLINICS.find(c=>c.k===S.clinic)||CLINICS[0];
+  const meds=lines(S.meds), notes=lines(S.notes);
+  const dates=[];
+  if(p.cath&&S.catheterDate)dates.push(["إزالة القسطرة",fmt(S.catheterDate),false]);
+  if(p.stent&&S.stentDate)dates.push(["إزالة الدعامة (موعد لا يجب تفويته)",fmt(S.stentDate),true]);
+  if(S.fuDate)dates.push(["المتابعة في "+clinic.n,fmt(S.fuDate),false]);
+  const li=arr=>"<ul>"+arr.map(x=>`<li>${esc(x)}</li>`).join("")+"</ul>";
+  $("sheet").innerHTML=`
+   <div class="lh">
+     <div class="ar"><b>أ.د. محمد جلال الشيخ</b><span>أستاذ جراحة المسالك البولية والتناسلية</span><span>كلية الطب – جامعة القاهرة</span></div>
+     <div class="en"><b>Prof. Mohamed Galal Elsheikh</b><br>Professor of Urology &amp; Reproductive Surgery<br>Cairo University</div>
+   </div>
+   <h2 class="doc-title">تعليمات ما بعد العملية</h2>
+   <div class="meta">
+     <div><span>الاسم: </span>${esc(S.name||"—")}</div>
+     <div><span>السن: </span>${esc(AR(S.age||"—"))}</div>
+     <div style="grid-column:1/-1"><span>العملية: </span>${esc(p.n)}</div>
+     <div><span>التاريخ: </span>${esc(fmt(S.surgeryDate)||"—")}</div>
+     <div><span>المستشفى: </span>${esc(S.hospital||"—")}</div>
+   </div>
+   ${dates.length?`<section class="sec"><h3>مواعيد مهمة</h3><div class="dates">${dates.map(d=>`<div class="date-chip ${d[2]?"must":""}"><span>${esc(d[0])}</span><b>${esc(d[1])}</b></div>`).join("")}</div></section>`:""}
+   ${a.expect.length?`<section class="sec"><h3>${SECS[0][1]}</h3>${li(a.expect)}</section>`:""}
+   ${meds.length?`<section class="sec"><h3>الأدوية</h3>${li(meds)}</section>`:""}
+   ${(a.care.length||notes.length)?`<section class="sec"><h3>${SECS[1][1]}</h3>${li(a.care.concat(notes))}</section>`:""}
+   ${a.warn.length?`<section class="sec warn"><h3>${SECS[2][1]}</h3>${li(a.warn)}</section>`:""}
+   <div class="foot"><span>${esc(clinic.n)}: ${esc(clinic.a)}</span><span>للتواصل: <span class="phone">${PHONE}</span></span></div>`;
+  $("wa").href=waLink();
+  try{localStorage.setItem(KEY,JSON.stringify(S))}catch(e){}
+}
+
+function plain(){
+  const p=PROCS[S.proc],a=active(),clinic=CLINICS.find(c=>c.k===S.clinic)||CLINICS[0];
+  const b=arr=>arr.map(x=>"• "+x).join("\n");const out=[];
+  out.push("*تعليمات ما بعد العملية*","أ.د. محمد جلال الشيخ – أستاذ جراحة المسالك البولية والتناسلية","");
+  if(S.name)out.push("الاسم: "+S.name);
+  out.push("العملية: "+p.n);
+  if(S.surgeryDate)out.push("التاريخ: "+fmt(S.surgeryDate));
+  if(S.hospital)out.push("المستشفى: "+S.hospital);
+  const d=[];
+  if(p.cath&&S.catheterDate)d.push("إزالة القسطرة: "+fmt(S.catheterDate));
+  if(p.stent&&S.stentDate)d.push("⚠️ إزالة الدعامة (لا تفوّت الموعد): "+fmt(S.stentDate));
+  if(S.fuDate)d.push("المتابعة في "+clinic.n+": "+fmt(S.fuDate));
+  if(d.length)out.push("","*مواعيد مهمة*",b(d));
+  if(a.expect.length)out.push("","*ما الذي تتوقعه*",b(a.expect));
+  const m=lines(S.meds);if(m.length)out.push("","*الأدوية*",b(m));
+  const c=a.care.concat(lines(S.notes));if(c.length)out.push("","*تعليمات العناية في المنزل*",b(c));
+  if(a.warn.length)out.push("","🚨 *اتصل بنا فورًا أو توجه للطوارئ إذا حدث:*",b(a.warn));
+  out.push("",clinic.n+": "+clinic.a,"للتواصل: "+PHONE);
+  return out.join("\n");
+}
+function waNum(){let s=(S.phone||"").replace(/[٠-٩]/g,d=>"٠١٢٣٤٥٦٧٨٩".indexOf(d));
+  const plus=s.trim().startsWith("+")||s.trim().startsWith("00");s=s.replace(/\D/g,"");
+  if(!s)return"";if(s.startsWith("00"))s=s.slice(2);else if(!plus&&s.startsWith("0"))s="20"+s.slice(1);return s}
+function waLink(){return "https://wa.me/"+waNum()+"?text="+encodeURIComponent(plain())}
+
+function toast(t){$("toast").textContent=t;clearTimeout(toast.t);toast.t=setTimeout(()=>$("toast").textContent="",2500)}
+
+$("form").addEventListener("input",e=>{const id=e.target.id;
+  if(F.includes(id)){S[id]=e.target.value;if(id!=="proc")S.sample=false}
+  if(e.target.dataset.id){const arr=S.off[S.proc]=S.off[S.proc]||[];const k=e.target.dataset.id;
+    const i=arr.indexOf(k);if(e.target.checked){if(i>-1)arr.splice(i,1)}else if(i<0)arr.push(k);
+    e.target.closest("label").classList.toggle("off",!e.target.checked)}
+  if(id==="proc")renderItems();
+  render()});
+$("form").addEventListener("submit",e=>e.preventDefault());
+$("clear").addEventListener("click",()=>{const keep={proc:S.proc,hospital:S.hospital,clinic:S.clinic,off:S.off};
+  S={...keep,surgeryDate:iso(0),name:"",age:"",phone:"",catheterDate:"",stentDate:"",fuDate:"",meds:"",notes:"",sample:false};
+  F.forEach(f=>{$(f).value=S[f]||""});render();$("name").focus();toast("بدأت ورقة جديدة")});
+$("copy").addEventListener("click",()=>{const t=plain();
+  const fb=()=>{const ta=document.createElement("textarea");ta.value=t;ta.setAttribute("readonly","");ta.style.position="fixed";ta.style.opacity="0";
+    document.body.appendChild(ta);ta.select();let ok=false;try{ok=document.execCommand("copy")}catch(e){}ta.remove();
+    toast(ok?"تم نسخ النص":"تعذّر النسخ. استخدم زر واتساب بدلًا منه")};
+  if(navigator.clipboard&&navigator.clipboard.writeText){navigator.clipboard.writeText(t).then(()=>toast("تم نسخ النص"),fb)}else fb()});
+
+let framed=true;try{framed=window.self!==window.top}catch(e){}
+if(!framed){$("print").hidden=false;$("print").addEventListener("click",()=>window.print())}
+
+function view(v){$("app").dataset.view=v;$("tab-edit").setAttribute("aria-selected",v==="edit");$("tab-preview").setAttribute("aria-selected",v==="preview");window.scrollTo(0,0)}
+$("tab-edit").onclick=()=>view("edit");$("tab-preview").onclick=()=>view("preview");
+
+renderItems();render();
+})();
+</script>
+</body>
+</html>
